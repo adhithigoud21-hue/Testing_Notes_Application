@@ -4,14 +4,6 @@ pipeline {
 
     stages {
 
-        stage('Checkout Code') {
-
-            steps {
-
-                git 'https://github.com/adhithigoud21-hue/Testing_Notes_Application.git'
-            }
-        }
-
         stage('Install Dependencies') {
 
             steps {
