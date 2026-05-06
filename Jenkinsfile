@@ -8,7 +8,7 @@ pipeline {
 
             steps {
 
-                bat 'pip install -r requirements.txt'
+                bat '"C:\\Users\\rohit\\AppData\\Local\\Programs\\Python\\Python39\\python.exe" -m pip install -r requirements.txt'
             }
         }
 
@@ -16,7 +16,7 @@ pipeline {
 
             steps {
 
-                bat 'pytest -n 2 --html=reports/report.html --self-contained-html'
+                bat '"C:\\Users\\rohit\\AppData\\Local\\Programs\\Python\\Python39\\python.exe" -m pytest -n 2 --html=reports/report.html --self-contained-html'
             }
         }
 
@@ -24,7 +24,7 @@ pipeline {
 
             steps {
 
-                bat 'pytest --alluredir=allure-results'
+                bat '"C:\\Users\\rohit\\AppData\\Local\\Programs\\Python\\Python39\\python.exe" -m pytest --alluredir=allure-results'
             }
         }
     }
