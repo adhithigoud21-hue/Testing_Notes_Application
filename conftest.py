@@ -16,10 +16,15 @@ def driver():
 
     config = load_config()
 
+    driver_path = ChromeDriverManager().install()
+
+    driver_path = os.path.join(
+        os.path.dirname(driver_path),
+        "chromedriver.exe"
+    )
+
     driver = webdriver.Chrome(
-        service=Service(
-            ChromeDriverManager().install()
-        )
+        service=Service(driver_path)
     )
 
     driver.maximize_window()
