@@ -31,13 +31,15 @@ pipeline {
 
     post {
 
-        always {
+    always {
 
-            archiveArtifacts artifacts: 'reports/*'
+        archiveArtifacts artifacts: 'reports/*', allowEmptyArchive: true
 
-            archiveArtifacts artifacts: 'screenshots/*'
+        archiveArtifacts artifacts: 'screenshots/*', allowEmptyArchive: true
 
-            archiveArtifacts artifacts: 'logs/*'
-        }
+        archiveArtifacts artifacts: 'logs/*', allowEmptyArchive: true
+
+        archiveArtifacts artifacts: 'allure-results/*', allowEmptyArchive: true
     }
 }
+    }
