@@ -23,9 +23,10 @@ def driver():
         "chromedriver.exe"
     )
 
-    driver = webdriver.Chrome(
-        service=Service(driver_path)
-    )
+    driver = webdriver.Remote(
+    command_executor="http://localhost:4444/wd/hub",
+    options=webdriver.ChromeOptions()
+)
 
     driver.maximize_window()
 
