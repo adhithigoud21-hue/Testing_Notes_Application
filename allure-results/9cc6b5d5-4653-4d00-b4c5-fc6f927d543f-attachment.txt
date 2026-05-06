@@ -1,0 +1,3 @@
+[32mINFO    [0m pytest_framework:test_login.py:12 Starting Login Test
+[32mINFO    [0m pytest_framework:test_login.py:23 Login successful
+[32mINFO    [0m pytest_framework:test_login.py:27 Login Test Passed

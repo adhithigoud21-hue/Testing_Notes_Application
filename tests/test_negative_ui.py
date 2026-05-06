@@ -65,3 +65,80 @@ def test_empty_note_creation(driver):
 
     # Validation
     assert before_count == after_count
+
+def test_login_with_blank_email(driver):
+
+    config = load_config()
+
+    login = LoginPage(driver)
+
+    login.login(
+        "",
+        config["credentials"]["password"]
+    )
+
+    time.sleep(2)
+
+    assert "login" in driver.current_url.lower()
+
+
+def test_login_with_blank_password(driver):
+
+    config = load_config()
+
+    login = LoginPage(driver)
+
+    login.login(
+        config["credentials"]["email"],
+        ""
+    )
+
+    time.sleep(2)
+
+    assert "login" in driver.current_url.lower()
+
+
+def test_create_note_with_only_title(driver):
+
+    config = load_config()
+
+    login = LoginPage(driver)
+
+    login.login(
+        config["credentials"]["email"],
+        config["credentials"]["password"]
+    )
+
+    home = HomePage(driver)
+
+    home.create_note(
+        "Only Title",
+        ""
+    )
+
+    time.sleep(2)
+
+    assert "notes" in driver.current_url.lower()
+
+
+def test_create_note_with_only_description(driver):
+
+    config = load_config()
+
+    login = LoginPage(driver)
+
+    login.login(
+        config["credentials"]["email"],
+        config["credentials"]["password"]
+    )
+
+    home = HomePage(driver)
+
+    home.create_note(
+        "",
+        "Only Description"
+    )
+
+    time.sleep(2)
+
+    assert "notes" in driver.current_url.lower()

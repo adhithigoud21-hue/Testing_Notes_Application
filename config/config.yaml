@@ -1,5 +1,7 @@
 base_url: "https://practice.expandtesting.com/notes/app"
 
+api_url: "https://practice.expandtesting.com/notes/api"
+
 credentials:
   email: "adhithigoud21@gmail.com"
   password: "9949959878"

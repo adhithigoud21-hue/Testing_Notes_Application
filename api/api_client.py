@@ -6,9 +6,15 @@ BASE_URL = "https://practice.expandtesting.com/notes/api"
 class APIClient:
 
     def __init__(self):
+
         self.token = None
 
-    # Login API
+        self.headers = {
+            "Content-Type": "application/json"
+        }
+
+    # ---------------- LOGIN API ----------------
+
     def login(self, email, password):
 
         payload = {
@@ -21,30 +27,36 @@ class APIClient:
             json=payload
         )
 
-        self.token = response.json()["data"]["token"]
+        # Store token only if login successful
+        if response.status_code == 200:
+
+            response_json = response.json()
+
+            if "data" in response_json:
+
+                self.token = response_json["data"]["token"]
+
+                self.headers = {
+                    "Content-Type": "application/json",
+                    "x-auth-token": self.token
+                }
 
         return response
 
-    # Get Notes API
-    def get_notes(self):
+    # ---------------- GET NOTES API ----------------
 
-        headers = {
-            "x-auth-token": self.token
-        }
+    def get_notes(self):
 
         response = requests.get(
             f"{BASE_URL}/notes",
-            headers=headers
+            headers=self.headers
         )
 
         return response
-    
-        # Create Note API
-    def create_note(self, title, description):
 
-        headers = {
-            "x-auth-token": self.token
-        }
+    # ---------------- CREATE NOTE API ----------------
+
+    def create_note(self, title, description):
 
         payload = {
             "title": title,
@@ -55,23 +67,18 @@ class APIClient:
         response = requests.post(
             f"{BASE_URL}/notes",
             json=payload,
-            headers=headers
+            headers=self.headers
         )
 
         return response
 
+    # ---------------- DELETE NOTE API ----------------
 
-    # Delete Note API
     def delete_note(self, note_id):
-
-        headers = {
-            "x-auth-token": self.token
-        }
 
         response = requests.delete(
             f"{BASE_URL}/notes/{note_id}",
-            headers=headers
+            headers=self.headers
         )
 
         return response
-    
