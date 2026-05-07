@@ -1,7 +1,8 @@
+#This is mcp helper file which has static methods
 class MCPHelper:
 
-    # ---------------- TEST DATA GENERATION ----------------
-
+    
+#used to generate data for authentication 
     @staticmethod
     def generate_test_data():
 
@@ -10,8 +11,8 @@ class MCPHelper:
             "password": "Test@123"
         }
 
-    # ---------------- FAILURE ANALYSIS ----------------
-
+    
+#used to analyse the failure and prints
     @staticmethod
     def analyze_failure(error):
 
@@ -19,8 +20,8 @@ class MCPHelper:
 
         print(f"Detected Error -> {error}")
 
-    # ---------------- LOCATOR IMPROVEMENT ----------------
-
+    
+#used for suggesting locators
     @staticmethod
     def suggest_locator():
 

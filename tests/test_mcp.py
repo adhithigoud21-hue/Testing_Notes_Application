@@ -1,7 +1,8 @@
+#this file has the mcp testcases
 from mcp.mcp_helper import MCPHelper
 
 
-# ---------------- TEST DATA GENERATION ----------------
+#This method will gebnerate the test data
 
 def test_generate_test_data():
 
@@ -16,7 +17,7 @@ def test_generate_test_data():
     assert data["email"] == "testuser@gmail.com"
 
 
-# ---------------- FAILURE ANALYSIS ----------------
+# This method will anylze the failures
 
 def test_failure_analysis():
 
@@ -27,7 +28,7 @@ def test_failure_analysis():
     assert True
 
 
-# ---------------- LOCATOR SUGGESTION ----------------
+#This method will suggest the locator
 
 def test_locator_suggestion():
 

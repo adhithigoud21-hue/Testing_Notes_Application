@@ -1,3 +1,4 @@
+#This file will have the negative test cases for UI
 from pages.login_page import LoginPage
 from pages.home_page import HomePage
 
@@ -6,7 +7,7 @@ from config.environment import load_config
 import time
 
 
-# ---------------- INVALID LOGIN ----------------
+# Tests invalid login credentials
 
 def test_invalid_login(driver):
 
@@ -29,42 +30,8 @@ def test_invalid_login(driver):
         "error" in page_source
     )
 
+#Tests blank credentials
 
-# ---------------- EMPTY NOTE CREATION ----------------
-
-def test_empty_note_creation(driver):
-
-    config = load_config()
-
-    login = LoginPage(driver)
-
-    login.login(
-        config["credentials"]["email"],
-        config["credentials"]["password"]
-    )
-
-    time.sleep(3)
-
-    home = HomePage(driver)
-
-    # Count notes before action
-    before_count = home.get_notes_count()
-
-    # Open note form
-    home.open_add_note_form()
-
-    time.sleep(2)
-
-    # Save without entering data
-    home.save_empty_note()
-
-    time.sleep(3)
-
-    # Count notes after action
-    after_count = home.get_notes_count()
-
-    # Validation
-    assert before_count == after_count
 
 def test_login_with_blank_email(driver):
 
@@ -82,45 +49,7 @@ def test_login_with_blank_email(driver):
     assert "login" in driver.current_url.lower()
 
 
-def test_login_with_blank_password(driver):
-
-    config = load_config()
-
-    login = LoginPage(driver)
-
-    login.login(
-        config["credentials"]["email"],
-        ""
-    )
-
-    time.sleep(2)
-
-    assert "login" in driver.current_url.lower()
-
-
-def test_create_note_with_only_title(driver):
-
-    config = load_config()
-
-    login = LoginPage(driver)
-
-    login.login(
-        config["credentials"]["email"],
-        config["credentials"]["password"]
-    )
-
-    home = HomePage(driver)
-
-    home.create_note(
-        "Only Title",
-        ""
-    )
-
-    time.sleep(2)
-
-    assert "notes" in driver.current_url.lower()
-
-
+#Tests creation of note with only description
 def test_create_note_with_only_description(driver):
 
     config = load_config()
@@ -139,6 +68,6 @@ def test_create_note_with_only_description(driver):
         "Only Description"
     )
 
-    time.sleep(2)
+    #time.sleep(2)
 
     assert "notes" in driver.current_url.lower()

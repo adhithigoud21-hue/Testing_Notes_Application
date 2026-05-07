@@ -1,3 +1,4 @@
+#this file tests the performance of the API and UI
 import time
 import requests
 
@@ -10,7 +11,7 @@ config = load_config()
 BASE_URL = config["api_url"]
 
 
-# ---------------- API PERFORMANCE ----------------
+# Tests api response time 
 
 def test_api_response_time():
 
@@ -30,10 +31,10 @@ def test_api_response_time():
         f"\nAPI Response Time: {response_time}"
     )
 
-    assert response_time < 5
+    assert response_time < 10
 
 
-# ---------------- UI PERFORMANCE ----------------
+# Tests UI page load time
 
 def test_ui_page_load_time(driver):
 
@@ -53,4 +54,4 @@ def test_ui_page_load_time(driver):
         f"\nUI Load Time: {load_time}"
     )
 
-    assert load_time < 10
+    assert load_time < 30

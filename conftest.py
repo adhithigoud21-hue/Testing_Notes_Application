@@ -1,3 +1,4 @@
+#This file has setup and teardown of browser and also has screenshot on failure
 import pytest
 import os
 
@@ -9,24 +10,38 @@ from webdriver_manager.chrome import ChromeDriverManager
 from config.environment import load_config
 
 
-# ---------------- DRIVER FIXTURE ----------------
+# Driver fixture with support for local and grid execution
 
 @pytest.fixture
 def driver():
 
     config = load_config()
 
-    driver_path = ChromeDriverManager().install()
+    execution_mode = config["execution"]
 
-    driver_path = os.path.join(
-        os.path.dirname(driver_path),
-        "chromedriver.exe"
-    )
+    #local execution
 
-    driver = webdriver.Remote(
-    command_executor="http://localhost:4444/wd/hub",
-    options=webdriver.ChromeOptions()
-)
+    if execution_mode == "local":
+
+        driver = webdriver.Chrome(
+            service=Service(
+                ChromeDriverManager().install()
+            )
+        )
+
+    # grid execution
+
+    elif execution_mode == "grid":
+
+        driver = webdriver.Remote(
+            command_executor="http://localhost:4444/wd/hub",
+            options=webdriver.ChromeOptions()
+        )
+
+    else:
+        raise Exception(
+            "Invalid execution mode in config.yaml"
+        )
 
     driver.maximize_window()
 
@@ -37,7 +52,7 @@ def driver():
     driver.quit()
 
 
-# ---------------- SCREENSHOT ON FAILURE ----------------
+# Screenshot on failure 
 
 @pytest.hookimpl(hookwrapper=True)
 def pytest_runtest_makereport(item, call):
@@ -51,7 +66,7 @@ def pytest_runtest_makereport(item, call):
 
         if driver:
 
-            # Create screenshots folder
+            
             if not os.path.exists("screenshots"):
                 os.makedirs("screenshots")
 

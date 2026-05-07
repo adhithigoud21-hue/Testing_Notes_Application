@@ -1,3 +1,4 @@
+#This file tests the end to end flow of creating note through UI and validating it through API
 from pages.login_page import LoginPage
 from pages.home_page import HomePage
 
@@ -17,7 +18,6 @@ def test_ui_to_api_validation(driver):
     title = f"Capgemini E2E {timestamp}"
     description = f"Hybrid Validation {timestamp}"
 
-    # ---------------- UI FLOW ----------------
 
     login = LoginPage(driver)
 
@@ -28,16 +28,13 @@ def test_ui_to_api_validation(driver):
 
     home = HomePage(driver)
 
-    # Create note via UI
+    # creates the note In UI
     home.create_note(
         title,
         description
     )
 
-    # Wait for backend processing
-    time.sleep(5)
-
-    # ---------------- API FLOW ----------------
+    
 
     api = APIClient()
 
@@ -54,11 +51,11 @@ def test_ui_to_api_validation(driver):
 
     notes_data = notes_response.json()["data"]
 
-    # ---------------- API VALIDATION ----------------
+    
 
     assert isinstance(notes_data, list)
 
-    # Optional validation logging
+    
     note_found = False
 
     for note in notes_data:

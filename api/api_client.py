@@ -1,10 +1,12 @@
 import requests
+#This File Contains a API Client class which will be used for interactions
 
+#This URL is API URL
 BASE_URL = "https://practice.expandtesting.com/notes/api"
 
 
 class APIClient:
-
+#It is a constructor which calls itself when object of class is created
     def __init__(self):
 
         self.token = None
@@ -13,8 +15,8 @@ class APIClient:
             "Content-Type": "application/json"
         }
 
-    # ---------------- LOGIN API ----------------
-
+    
+#Used for Login and authentication
     def login(self, email, password):
 
         payload = {
@@ -24,10 +26,11 @@ class APIClient:
 
         response = requests.post(
             f"{BASE_URL}/users/login",
-            json=payload
+            json=payload,
+            timeout=30
         )
-
-        # Store token only if login successful
+# if login success then token will get stored 
+        
         if response.status_code == 200:
 
             response_json = response.json()
@@ -42,20 +45,20 @@ class APIClient:
                 }
 
         return response
-
-    # ---------------- GET NOTES API ----------------
-
+#used to get notes
+    
     def get_notes(self):
 
         response = requests.get(
             f"{BASE_URL}/notes",
-            headers=self.headers
+            headers=self.headers,
+            timeout=30
         )
 
         return response
 
-    # ---------------- CREATE NOTE API ----------------
-
+    
+#used to create a note
     def create_note(self, title, description):
 
         payload = {
@@ -67,18 +70,20 @@ class APIClient:
         response = requests.post(
             f"{BASE_URL}/notes",
             json=payload,
-            headers=self.headers
+            headers=self.headers,
+            timeout=30
         )
 
         return response
 
-    # ---------------- DELETE NOTE API ----------------
-
+    
+# used for deleting a note
     def delete_note(self, note_id):
 
         response = requests.delete(
             f"{BASE_URL}/notes/{note_id}",
-            headers=self.headers
+            headers=self.headers,
+            timeout=30
         )
 
         return response

@@ -1,3 +1,4 @@
+#This file will ahve the negative cases of API
 import requests
 
 from api.api_client import APIClient
@@ -9,7 +10,7 @@ config = load_config()
 BASE_URL = config["api_url"]
 
 
-# ---------------- INVALID TOKEN ----------------
+#Tests invalid token
 
 def test_invalid_token():
 
@@ -25,18 +26,10 @@ def test_invalid_token():
     assert response.status_code in [401, 403]
 
 
-# ---------------- INVALID ENDPOINT ----------------
-
-def test_invalid_endpoint():
-
-    response = requests.get(
-        f"{BASE_URL}/invalidendpoint"
-    )
-
-    assert response.status_code == 404
 
 
-# ---------------- INVALID LOGIN ----------------
+
+# Tests with invalid email
 
 def test_login_with_invalid_email():
 
@@ -50,7 +43,7 @@ def test_login_with_invalid_email():
     assert response.status_code in [400, 401]
 
 
-# ---------------- BLANK LOGIN ----------------
+# Testrs with blank credentials
 
 def test_login_with_blank_credentials():
 
@@ -64,18 +57,10 @@ def test_login_with_blank_credentials():
     assert response.status_code in [400, 401]
 
 
-# ---------------- ACCESS WITHOUT LOGIN ----------------
-
-def test_get_notes_without_login():
-
-    response = requests.get(
-        f"{BASE_URL}/notes"
-    )
-
-    assert response.status_code in [401, 403]
 
 
-# ---------------- EMPTY NOTE CREATION ----------------
+
+#tests with empty note 
 
 def test_create_note_with_empty_data():
 

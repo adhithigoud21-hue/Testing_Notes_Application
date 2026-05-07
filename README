@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This project is a Hybrid Test Automation Framework developed using Selenium, Pytest, Requests, Jenkins, Docker, and Selenium Grid.
+This project is a Hybrid Test Automation Framework where Selenium, Pytest, Requests, Jenkins, Docker and Selenium Grid are used.
 
 The framework automates:
 
@@ -13,7 +13,7 @@ The framework automates:
 - Parallel Execution
 - CI/CD Integration
 
-The application under test is the Notes Application:
+The Notes Application: is the application that will be tested.
 https://practice.expandtesting.com/notes/app
 
 ---
@@ -24,7 +24,7 @@ https://practice.expandtesting.com/notes/app
 - Login functionality validation
 - Create note functionality
 - Negative UI scenarios
-- Screenshot capture on failure
+The first one is a failure dialog box when capturing.Firstly, there is a capture failure dialog box.
 
 ## API Automation
 - Login API
@@ -34,7 +34,7 @@ https://practice.expandtesting.com/notes/app
 - Negative API scenarios
 
 ## Hybrid Testing
-- UI + API End-to-End validation
+This includes UI/ API End-to-End validation.This comprises End-to-End validation of UI + API.
 
 ## Reporting
 - HTML Reports
@@ -58,13 +58,13 @@ https://practice.expandtesting.com/notes/app
 - Auto-retry mechanism
 
 ## MCP Implementation Layer
-- Simulated AI-based test data generation
+AI algorithms are used to simulate the test data.Test data is generated with the use of AI algorithms.
 - Failure analysis support
 - Locator suggestion mechanism
 
 ## Performance Engineering
-- API response time measurement
-- UI page load timing
+Time the API response when calling the API.- Call the API and measure the API response time.
+The duration that the user takes to load an UI page.
 - Basic performance logging
 
 ---
@@ -74,12 +74,12 @@ https://practice.expandtesting.com/notes/app
 | Tool / Technology | Purpose |
 |---|---|
 | Python | Programming Language |
-| Selenium WebDriver | UI Automation |
+This technology could be best described with only one word: simple.This technology is easy.It is the most basic among the technologies.
 | Pytest | Test Framework |
 | Requests | API Testing |
 | Jenkins | CI/CD |
 | Docker | Containerization |
-| Selenium Grid | Distributed Execution |
+It helps in distributed execution using Selenium Grid.Can be done in a distributed manner using Selenium Grid.
 | Allure | Reporting |
 | GitHub | Version Control |
 
@@ -141,7 +141,7 @@ pip install -r requirements.txt
 
 # Running Tests
 
-## Run Complete Test Suite
+To run the entire test suite!To run any/all tests in the Test Suite!
 
 ```bash
 pytest -v
@@ -157,7 +157,7 @@ pytest -n 2
 
 ---
 
-## Run Specific Test File
+This is for the user to provide a test file to be run.Runs a user supplied test file.
 
 ```bash
 pytest tests/test_login.py -v
@@ -229,8 +229,8 @@ Pipeline stages implemented:
 
 # Agentic Automation Features
 
-- Intelligent waits using WebDriverWait
-- Retry mechanism for flaky actions
+If you are using Waits with intelligence, then you can use the WebDriverWait to create the Waits.Waits using WebDriverWait.
+Support for flaky actions to be retried.
 
 ---
 
@@ -245,7 +245,7 @@ Pipeline stages implemented:
 # Performance Engineering
 
 - API response timing
-- UI page load timing
+Time taken to load the UI for the page.
 - Basic trend logging
 
 ---
